@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Math&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
+<link href="style.css?v=2" rel="stylesheet">
 
 <style>
 .relatedthumb {
@@ -89,7 +89,7 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <div class="row justify-content-center text-center">
 
 <p>
-<a href="https://arxiv.org/pdf/2502.XXXXX.pdf" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/paper-thumb.png" style="border:1px solid; margin: 0 38px;" alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
+<a href="https://arxiv.org/pdf/2505.17013" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/paper-thumb.png" style="border:1px solid; margin: 0 38px;" alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
 <a href="https://github.com/kevinlu4588/WhenAreConceptsErased" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Github code thumbnail" data-nothumb=""><br>Source Code<br>Github</a>
 <!-- <a href="https://unified.baulab.info/weights/uce_models/" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/data-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Data thumbnail" data-nothumb=""><br>Fine-Tuned<br>Model  Weights</a> -->
 <!-- <a href="https://huggingface.co/spaces/baulab/Erasing-Concepts-In-Diffusion" class="d-inline-block p-3 align-bottom" target="_blank"><img height="78" width="104" src="images/demo3x4-thumb.png" style="border:1px solid" alt="Huggingface demo thumbnail" data-nothumb=""><br>Huggingface<br>Demo</a> -->
@@ -122,7 +122,7 @@ To assess whether a concept has been truly erased from the model, we introduce <
 </figure>
 
 <h2> Our Comprehensive Evaluation Suite </h2>
-  <p>To empirically differentiate between guidance-based avoidance and destruction-based removal, we introduce a comprehensive evaluation framework that probes multiple pathways through which erased knowledge could resurface. Our suite includes four distinct probing techniques that go beyond traditional adversarial text inputs:</p>
+  <p>To empirically investigate the extent to which models perform guidance-based avoidance versus destruction-based removal, we introduce a comprehensive evaluation framework that probes multiple pathways through which erased knowledge may resurface. Our suite includes four distinct probing techniques that extend beyond traditional adversarial text inputs:</p>
 
 <h3> 1. Visual Context Probing </h3>
   <p>We investigate whether an erased concept can resurface when the model is provided with visual context. Unlike optimization-based approaches, these methods do not use the network's gradients, providing a different lens on erasure efficacy.</p>
@@ -160,30 +160,38 @@ To assess whether a concept has been truly erased from the model, we introduce <
   </figure>
 
 
-<h3> 3. Classifier-Guided Latent Probing </h3>
-  <p>To probe whether erased models still encode latent traces of the target concept, we apply classifier guidance in latent space. We train a lightweight, timestep-aware classifier directly in the latent space and use its gradient to steer the diffusion trajectory toward regions associated with the erased concept.</p>
-  
-  <p>At each denoising step t, we compute the gradient of the binary cross-entropy loss with respect to the latent:</p>
-  
-  <figure class="center_image" style="margin-top: 20px">
-    <center><img src="images/Figures/classifier_guidance_eq1.png" style="width:100%; max-width:400px"></center>
-  </figure>
-  
-  <p>We then use this gradient to update the latent at each timestep:</p>
-  
-  <figure class="center_image" style="margin-top: 20px">
-    <center><img src="images/Figures/classifier_guidance_eq2.png" style="width:100%; max-width:400px"></center>
-  </figure>
-  
-  <p>
-    where s<sub>clf</sub> is the guidance strength and &sigma;<sub>t</sub> controls the effective step size according to the current noise level.
-  </p>
-    
-  <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/Figures/classifier_guidance-1.png" style="width:100%; max-width:800px"></center>
-    <figcaption>Classifier Guidance with Noise-Based probes significantly improves the visual fidelity and semantic accuracy of recovered concepts. Even STEREO, which resists other probing methods, can regenerate erased concepts when steered by latent classifiers.
-    </figcaption>
-  </figure>
+<h3>3. Classifier-Guided Latent Probing</h3>
+<p>
+To test whether erased models still encode latent traces of the target concept, we apply classifier guidance in latent space. 
+A lightweight timestep-aware classifier, trained directly on diffusion latents, predicts the probability that the current latent encodes the erased concept. 
+This classifier provides a gradient signal that steers the diffusion trajectory toward regions associated with that concept.
+</p>
+
+<p>At each denoising step <i>t</i>, we compute the gradient of the binary cross-entropy loss with respect to the latent:</p>
+
+<figure class="center_image" style="margin-top: 20px">
+  <center>
+    <img src="images/Figures/classifier_guidance_eq1.png" style="width:100%; max-width:380px">
+  </center>
+  <figcaption><b>Eq. 3.</b> Gradient of the BCE loss with respect to the latent, providing a semantic direction that increases classifier confidence in the target concept.</figcaption>
+</figure>
+
+<p>We then update the latent at each timestep using the classifier's guidance direction:</p>
+
+<figure class="center_image" style="margin-top: 20px">
+  <center>
+    <img src="images/Figures/classifier_guidance_eq2.png" style="width:85%; max-width:310px">
+  </center>
+  <figcaption><b>Eq. 4.</b> Classifier-guided latent update, where <i>s<sub>clf</sub></i> controls guidance strength and 
+  <i>&sigma;<sub>t</sub></i> scales the step size by the current noise level (following Dhariwal & Nichol).</figcaption>
+</figure>
+
+<figure class="center_image" style="margin-top: 30px">
+  <center><img src="images/Figures/classifier_guidance-1.png" style="width:100%; max-width:800px"></center>
+  <figcaption>
+    <b>Classifier-guided probing results.</b> Latent classifier guidance enhances semantic recovery and visual fidelity, revealing hidden concept traces even in models previously robust to other probing methods.
+  </figcaption>
+</figure>
 
 <h3> 4. Dynamic Concept Tracing </h3>
   <p>We analyze how concept representations evolve during the erasure process by examining the trajectories of alternative generations at different erasure strengths. We prompt the model at various stages using the concept name and inspect the resulting images to understand how different methods degrade concepts.</p>
