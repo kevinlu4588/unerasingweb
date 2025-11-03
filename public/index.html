@@ -99,14 +99,13 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <div class="card-block">
 <h3>When are concepts truly erased from diffusion models?</h3>
 <p>
-<p>
-In concept erasure, a model is modified to selectively prevent it from generating a target concept. Despite the rapid development of new methods, it remains unclear how thoroughly these approaches remove the target concept from the model.
+In concept erasure, a model is modified to selectively prevent it from generating a target concept. Despite the rapid development of new methods, it remains unclear how thoroughly these approaches remove the target concept from the model. 
 </p>
 <p>
-We begin by proposing two conceptual models for the erasure mechanism in diffusion models: (i) <b>guidance-based avoidance</b> - interfering with the model's internal guidance processes, and (ii) <b>destruction-based removal</b> - reducing the unconditional likelihood of generating the target concept, potentially removing it entirely.
+We begin by proposing <b>two conceptual models for the erasure mechanism in diffusion models</b>: (i) interfering with the model's internal guidance processes, and (ii) reducing the unconditional likelihood of generating the target concept, potentially removing it entirely. 
 </p>
 <p>
-To assess whether a concept has been truly erased from the model, we introduce a comprehensive suite of independent probing techniques: supplying visual context, modifying the diffusion trajectory, applying classifier guidance, and analyzing the model's alternative generations that emerge in place of the erased concept. Our results shed light on the value of exploring concept erasure robustness outside of adversarial text inputs, and emphasize the importance of comprehensive evaluations for erasure in diffusion models.
+To assess whether a concept has been truly erased from the model, we introduce <b>a comprehensive suite of independent probing techniques</b>: supplying visual context, modifying the diffusion trajectory, applying classifier guidance, and analyzing the model's alternative generations that emerge in place of the erased concept. Our results shed light on the value of exploring concept erasure robustness outside of adversarial text inputs, and emphasize the importance of comprehensive evaluations for erasure in diffusion models.
 </p>
 </div><!--card-block-->
 </div><!--card-->
@@ -195,8 +194,6 @@ To assess whether a concept has been truly erased from the model, we introduce a
     </figcaption>
   </figure>
   
-  <p>We observe that methods which perform more robust erasure tend to degrade the concept more consistently. Gradient Ascent and Task Vector often converge to generate similar images along the trajectory, with quality degrading as erasure progresses. In contrast, methods that behave more like guidance-based avoidance exhibit more abrupt transitions between alternative generations, producing more varied outputs when prompted with the erased concept.</p>
-
 
 <h2>How to cite</h2>
 
