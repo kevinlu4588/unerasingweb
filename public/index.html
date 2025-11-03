@@ -59,17 +59,20 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
  <nobr class="widenobr">Diffusion Models?</nobr>
  </h1>
 <address>
-  <nobr><a href="https://kevinlu.net/" target="_blank"
+  <nobr><a href="https://kevinlu4588.github.io/" target="_blank"
   >Kevin Lu</a><sup>1</sup>,</nobr>
   <nobr>Nicky Kriplani<sup>2</sup>,</nobr>
   <nobr><a href="https://rohitgandikota.github.io/" target="_blank"
   >Rohit Gandikota</a><sup>1</sup>,</nobr>
-  <nobr>Minh Pham<sup>2</sup>,</nobr>
+  <nobr><a href="https://www.mnpham.com/" target="_blank"
+  >Minh Pham</a><sup>2</sup>,</nobr>
   <nobr><a href="https://baulab.info/" target="_blank"
   >David Bau</a><sup>1</sup>,</nobr>
  <br>
-  <nobr>Chinmay Hegde<sup>2</sup>,</nobr>
-  <nobr>Niv Cohen<sup>2</sup></nobr>
+  <nobr><a href="https://chinmayhegde.github.io/" target="_blank"
+  >Chinmay Hegde</a><sup>2</sup>,</nobr>
+  <nobr><a href="https://nivc.github.io/" target="_blank"
+  >Niv Cohen</a><sup>2</sup></nobr>
  <br>
   <nobr><sup>1</sup><a href="https://khoury.northeastern.edu/" target="_blank"
   >Northeastern University</a>,</nobr>
@@ -173,8 +176,10 @@ To assess whether a concept has been truly erased from the model, we introduce a
     <center><img src="images/Figures/classifier_guidance_eq2.png" style="width:100%; max-width:400px"></center>
   </figure>
   
-  <p>where s<sub>clf</sub> is the guidance strength and σ<sub>t</sub> controls the effective step size according to the current noise level.</p>
-  
+  <p>
+    where s<sub>clf</sub> is the guidance strength and &sigma;<sub>t</sub> controls the effective step size according to the current noise level.
+  </p>
+    
   <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/Figures/classifier_guidance-1.png" style="width:100%; max-width:800px"></center>
     <figcaption>Classifier Guidance with Noise-Based probes significantly improves the visual fidelity and semantic accuracy of recovered concepts. Even STEREO, which resists other probing methods, can regenerate erased concepts when steered by latent classifiers.
@@ -192,57 +197,6 @@ To assess whether a concept has been truly erased from the model, we introduce a
   
   <p>We observe that methods which perform more robust erasure tend to degrade the concept more consistently. Gradient Ascent and Task Vector often converge to generate similar images along the trajectory, with quality degrading as erasure progresses. In contrast, methods that behave more like guidance-based avoidance exhibit more abrupt transitions between alternative generations, producing more varied outputs when prompted with the erased concept.</p>
 
-<h2> Key Findings: Guidance vs Destruction </h2>
-  <p>Our comprehensive evaluation reveals distinct patterns across erasure methods. Across our probing techniques, we find that:</p>
-  
-  <ul style="text-align: left; max-width: 800px; margin: auto;">
-    <li><b>Visual Context Probing:</b> TaskVectors, despite being robust to text attacks, can still inpaint erased concepts when given visual context</li>
-    <li><b>Noise-Based Probing:</b> Simply increasing stochasticity can recover concepts in UCE, ESD-x, and ESD-u, suggesting weak guidance away from concepts</li>
-    <li><b>Classifier Guidance:</b> Even STEREO, which resists other probes, can regenerate erased concepts when steered by latent classifiers</li>
-    <li><b>Dynamic Tracing:</b> Destruction-based methods show continuous degradation while guidance-based methods exhibit abrupt transitions</li>
-  </ul>
-  
-  <p>These findings indicate that <b>most current erasure methods operate through guidance-based avoidance rather than true destruction</b> of underlying representations. Methods that appear robust under traditional input search techniques remain vulnerable when assessed from other perspectives.</p>
-  
-  <table style="margin: 20px auto; max-width: 800px; border-collapse: collapse;">
-    <tr style="background-color: #f0f0f0;">
-      <th style="padding: 10px; border: 1px solid #ddd;">Method</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Text Attacks</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Visual Context</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Noise Probing</th>
-      <th style="padding: 10px; border: 1px solid #ddd;">Classifier Guidance</th>
-    </tr>
-    <tr>
-      <td style="padding: 10px; border: 1px solid #ddd;">GA</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-    </tr>
-    <tr>
-      <td style="padding: 10px; border: 1px solid #ddd;">TaskVector</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">Partially</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-    </tr>
-    <tr>
-      <td style="padding: 10px; border: 1px solid #ddd;">STEREO</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-    </tr>
-    <tr>
-      <td style="padding: 10px; border: 1px solid #ddd;">UCE/ESD</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
-    </tr>
-  </table>
-  
-  <p style="text-align: center; font-style: italic; margin-top: 20px;">Our evaluation emphasizes the critical need for comprehensive assessments to reliably determine the completeness and true effectiveness of concept erasure methods.</p>
 
 <h2>How to cite</h2>
 
