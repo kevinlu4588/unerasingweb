@@ -14,25 +14,27 @@ h2 {
 .nd-pageheader {
   padding: 2rem 15px;
   margin-bottom: 1.5rem;
-  color: #EECCEE;
+  color: #FFFFFF;
   text-align: center;
-  background-color: #9600FC;
+  background-color: #c9904a;
 }
 
 .nd-pageheader a, .nd-pageheader a.likelink {
-  color: #EECCEE;
+  color: #FFFFFF;
+  text-decoration: underline;
 }
 
 .nd-pagefooter {
   margin-top: 1.5rem;
   padding: 1rem;
-  color: #EECCEE;
+  color: #FFFFFF;
   text-align: center;
-  background-color: #9600FC;
+  background-color: #c9904a;
 }
 
 .nd-pagefooter a {
-  color: #EECCEE;
+  color: #FFFFFF;
+  text-decoration: underline;
 }
 
 .nd-pageheader .container {

@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Unified Concept Editing in Diffusion Models</title>
+<title>When Are Concepts Erased From Diffusion Models?</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="Addressing bias, copyright, and offensive content in diffusion models by directly calculating parameter changes." />
-<meta property="og:title" content="Unified Concept Editing in Diffusion Models" />
-<meta property="og:description" content="Addressing bias, copyright, and offensive content in diffusion models by directly calculating parameter changes." />
+<meta name="description" content="Investigating whether concept erasure in diffusion models truly removes knowledge or merely avoids it, with a comprehensive suite of probing techniques." />
+<meta property="og:title" content="When Are Concepts Erased From Diffusion Models?" />
+<meta property="og:description" content="Investigating whether concept erasure in diffusion models truly removes knowledge or merely avoids it, with a comprehensive suite of probing techniques." />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" /> 
-<meta name="twitter:title" content="Unified Concept Editing in Diffusion Models" />
-<meta name="twitter:description" content="Addressing bias, copyright, and offensive content in diffusion models by directly calculating parameter changes." />
+<meta name="twitter:title" content="When Are Concepts Erased From Diffusion Models?" />
+<meta name="twitter:description" content="Investigating whether concept erasure in diffusion models truly removes knowledge or merely avoids it, with a comprehensive suite of probing techniques." />
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -54,35 +54,31 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <div class="nd-pageheader">
  <div class="container">
  <h1 class="lead">
- Unified
- <nobr class="widenobr">Concept Editing</nobr>
- in 
- <nobr class="widenobr">Diffusion Models</nobr>
+ <nobr class="widenobr">When Are Concepts</nobr>
+ <nobr class="widenobr">Erased From</nobr>
+ <nobr class="widenobr">Diffusion Models?</nobr>
  </h1>
 <address>
+  <nobr><a href="https://kevinlu.net/" target="_blank"
+  >Kevin Lu</a><sup>1</sup>,</nobr>
+  <nobr>Nicky Kriplani<sup>2</sup>,</nobr>
   <nobr><a href="https://rohitgandikota.github.io/" target="_blank"
   >Rohit Gandikota</a><sup>1</sup>,</nobr>
-  <nobr><a href="https://orgadhadas.github.io/" target="_blank"
-  >Hadas Orgad</a><sup>2</sup>,</nobr>
-  <nobr><a href="https://belinkov.com/" target="_blank"
-  >Yonatan Belinkov</a><sup>2</sup>,</nobr>
-  <nobr><a href="https://joaanna.github.io/" target="_blank"
-  >Joanna Materzy&#324;ska</a><sup>3</sup>,</nobr>
+  <nobr>Minh Pham<sup>2</sup>,</nobr>
   <nobr><a href="https://baulab.info/" target="_blank"
-  >David Bau</a><sup>1</sup></nobr>
+  >David Bau</a><sup>1</sup>,</nobr>
+ <br>
+  <nobr>Chinmay Hegde<sup>2</sup>,</nobr>
+  <nobr>Niv Cohen<sup>2</sup></nobr>
  <br>
   <nobr><sup>1</sup><a href="https://khoury.northeastern.edu/" target="_blank"
   >Northeastern University</a>,</nobr>
-  <nobr><sup>2</sup><a href="https://cs.technion.ac.il/" target="_blank"
-  >Technion - IIT</a></nobr>;
-  <nobr><sup>3</sup><a href="https://www.csail.mit.edu/" target="_blank"
-  >MIT CSAIL</a></nobr>
+  <nobr><sup>2</sup><a href="https://cs.nyu.edu/" target="_blank"
+  >New York University</a></nobr>
+ <br><br>
+  <nobr>The Thirty-Ninth Annual Conference on Neural Information Processing Systems (<a href="https://neurips.cc/Conferences/2025" target="_blank">NeurIPS 2025</a>)</nobr>
 
 </address>
- <center>
-  Winter Conference on Applications of Computer Vision
-  <a href="https://wacv2024.thecvf.com">(WACV 2024)</a>
-</center>
  </div>
 </div><!-- end nd-pageheader -->
 
@@ -90,26 +86,24 @@ gtag('js', new Date()); gtag('config', 'G-FD12LWN557');
 <div class="row justify-content-center text-center">
 
 <p>
-<a href="https://arxiv.org/pdf/2308.14761.pdf" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/paper-thumb.png" style="border:1px solid; margin: 0 38px;" alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
-<a href="https://github.com/rohitgandikota/unified-concept-editing" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Github code thumbnail" data-nothumb=""><br>Source Code<br>Github</a>
+<a href="https://arxiv.org/pdf/2502.XXXXX.pdf" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/paper-thumb.png" style="border:1px solid; margin: 0 38px;" alt="ArXiv Preprint thumbnail" data-nothumb=""><br>ArXiv<br>Preprint</a>
+<a href="https://github.com/kevinlu4588/WhenAreConceptsErased" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/code-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Github code thumbnail" data-nothumb=""><br>Source Code<br>Github</a>
 <!-- <a href="https://unified.baulab.info/weights/uce_models/" class="d-inline-block p-3 align-top" target="_blank"><img height="100" width="78" src="images/data-thumb.png" style="border:1px solid; margin: 0 38px;" alt="Data thumbnail" data-nothumb=""><br>Fine-Tuned<br>Model  Weights</a> -->
 <!-- <a href="https://huggingface.co/spaces/baulab/Erasing-Concepts-In-Diffusion" class="d-inline-block p-3 align-bottom" target="_blank"><img height="78" width="104" src="images/demo3x4-thumb.png" style="border:1px solid" alt="Huggingface demo thumbnail" data-nothumb=""><br>Huggingface<br>Demo</a> -->
 </p>
 
 <div class="card" style="max-width: 1020px;">
 <div class="card-block">
-<h3>How to fix multiple issues with diffusion model weights?</h3>
+<h3>When are concepts truly erased from diffusion models?</h3>
 <p>
 <p>
-Text-to-image models suffer from various safety issues that may limit their suitability for deployment.
-Previous methods have separately addressed individual issues of bias, copyright, and offensive content in text-to-image models. However, in the real world, all of these issues appear simultaneously in the same model.
-
+In concept erasure, a model is modified to selectively prevent it from generating a target concept. Despite the rapid development of new methods, it remains unclear how thoroughly these approaches remove the target concept from the model.
 </p>
 <p>
-In this paper, we present a method that tackles those diverse issues with a single approach. 
-  Our method, Unified Concept Editing (UCE), edits the model without training using <b>a closed-form solution conditioned on cross attention outputs</b>, and scales seamlessly to concurrent edits on text-conditional diffusion models.
-UCE enables direct editing of concepts based on phrases and attributes without use of new training data, supporting rapid iteration.
-Key advantages versus finetuning approaches include: efficient scaling of editing multiple concepts, precise concept changes through direct modification of model weights, avoidance of interference with protected or unrelated concepts, and rapid iteration from fast closed-form editing
+We begin by proposing two conceptual models for the erasure mechanism in diffusion models: (i) <b>guidance-based avoidance</b> - interfering with the model's internal guidance processes, and (ii) <b>destruction-based removal</b> - reducing the unconditional likelihood of generating the target concept, potentially removing it entirely.
+</p>
+<p>
+To assess whether a concept has been truly erased from the model, we introduce a comprehensive suite of independent probing techniques: supplying visual context, modifying the diffusion trajectory, applying classifier guidance, and analyzing the model's alternative generations that emerge in place of the erased concept. Our results shed light on the value of exploring concept erasure robustness outside of adversarial text inputs, and emphasize the importance of comprehensive evaluations for erasure in diffusion models.
 </p>
 </div><!--card-block-->
 </div><!--card-->
@@ -120,107 +114,136 @@ Key advantages versus finetuning approaches include: efficient scaling of editin
 <div class="col">
   
 <figure class="center_image" style="margin-top: 30px">
-  <center><img src="images/paper/intro.png" style="width:100%; max-width:800px"></center>
-  <figcaption>In a unified way, UCE can debias, erase and moderate concepts in diffusion models. Unlike previous model editing methods that address each application individually, our method can simultaneously edit multiple concepts with minimal interference
+  <center><img src="images/Figures/figure1-1.png" style="width:100%; max-width:800px"></center>
+  <figcaption>We propose two conceptual models for erasure: (1) <b>Guidance-Based Avoidance</b>, which avoids a concept by redirecting the model to different concept locations. (2) <b>Destruction-Based Removal</b>, which reduces the unconditional likelihood of the target concept while keeping guidance intact.
   </figcaption>
 </figure>
 
-  <h2> Why debias/erase/moderate concepts from diffusion models? </h2>
-  <p>Since large-scale models like Stable Diffusion are trained on massive datasets, they often learn concerning capabilities like generating nudity 
-    or imitating styles/content without permission. This has created risks: Stable Diffusion can be used 
-    to <a href="https://www.washingtonpost.com/technology/2023/02/13/ai-porn-deepfakes-women-consent/">generate nonconsensual deepfake porn</a>, 
-    <a href="https://www.washingtonpost.com/comics/2023/02/14/ai-in-illustration/">mimic artists' work</a>, 
-    <a href="https://www.theverge.com/2023/2/6/23587393/ai-art-copyright-lawsuit-getty-images-stable-diffusion">reproduce copyrighted/trademarked content</a>, and
-    <a href="https://www.bloomberg.com/graphics/2023-generative-ai-bias/">amplify stereotypes about race and gender</a>.
-   Such issues pose serious challenges for institutions releasing models. </p>
-  <p>   
-  There are methods that address these concerns separately, but they do not scale well to editing multiple concepts together. 
-    We propose a closed-form solution that can address these challenges in a unified way at scale, editing multiple concepts concurrently with minimal interference.
-  </p>
+<h2> Our Comprehensive Evaluation Suite </h2>
+  <p>To empirically differentiate between guidance-based avoidance and destruction-based removal, we introduce a comprehensive evaluation framework that probes multiple pathways through which erased knowledge could resurface. Our suite includes four distinct probing techniques that go beyond traditional adversarial text inputs:</p>
+
+<h3> 1. Visual Context Probing </h3>
+  <p>We investigate whether an erased concept can resurface when the model is provided with visual context. Unlike optimization-based approaches, these methods do not use the network's gradients, providing a different lens on erasure efficacy.</p>
   
-<h2> How to edit concepts simultaneously in diffusion models? </h2>
+  <h4> Inpainting Probe </h4>
+  <p>We provide the model with an image of the erased concept but mask out a central portion, testing whether the model can complete the missing region despite erasure.</p>
+  
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/method.png" style="width:100%; max-width:600px"></center>
-    <figcaption> We update the weights of cross attention linear layers in closed-form by conditioning its outputs for the concepts to edit and preserve. Our method, UCE, does not require any training data collection or any gradient descent. UCE can debias, erase, and moderate concepts together in a single edit and scales to editing multiple concepts while minimizing interference with unedited concepts.
+    <center><img src="images/Figures/inpaint-1.png" style="width:100%; max-width:800px"></center>
+    <figcaption>Task Vector method, despite being robust to adversarial attacks, still inpaints recognizable images of erased concepts when given visual context.
     </figcaption>
   </figure>
-  <p>We edit the cross attention weights by conditioning new target output for the concept embeddings to edit and preserve the previoud outputs for concepts to preserve. We minimize the loss shown in the figure above through this closed-form update:
-  </p>
-  <center><img src="images/paper/uce_closed.png" style="width:500px;padding-bottom:10px;"></center>
-  <p> Our method generalizes previous state-of-the-art model editing methods like <a href="https://arxiv.org/pdf/2303.08084.pdf">TIME</a> and 
-    <a href="https://openreview.net/pdf?id=MkbcAHIYgyS">MEMIT</a>. Our method can also be generalised to editing any linear projection.</p>
-<h2> Erasing an artistic style</h2>
-  <p>Models like Stable Diffusion can mimic <a href="https://proximacentaurib.notion.site/About-Image-Synthesis-Style-Studies-4dcbd554f4b0403d802dc5b26fb3b8e9">the styles of more than 1500 artists</a>. Not all artists are excited about their art being mimicked by genrative models and wish to be opted-out of these models' vocubulary.
-  Recent works have been working on <a href="https://spawning.ai">filtering the training data</a> to accomodate the opt-out requests from individuals. Eventhough such filtering would exclude the artists from future models that are trained on the filtered dataset, model editing may still be needed for certain artists that aren't fully addressed. We propose using UCE that is scalable, fast, and displays minimal interference with other artists. 
-  To erase style, we use the name of the artist and steer them towards general prompts like "art" or "".</p>
+  
+  <h4> Diffusion Completion Probe </h4>
+  <p>We run the diffusion process with the original model for a few timesteps (t=5 or t=10 out of 50), then pass the intermediate noisy image to the erased model to complete the generation process.</p>
+  
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/style1.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Erasing 1 artist. On left, we show the original vs edited for the intended erasure. On the right, we show the interference with unerased artists. We find that our method efficiently erases while having the least inteference.
+    <center><img src="images/Figures/diffusion_completion-1.png" style="width:100%; max-width:800px"></center>
+    <figcaption>RECE and STEREO surprisingly reproduce knowledge about erased concepts when completing partially generated images from the original model.
     </figcaption>
   </figure>
+<h3> 2. Noise-Based Trajectory Probing </h3>
+  <p>We introduce a training-free method to probe for residual knowledge by directly manipulating the model's generation process. This technique searches for hidden knowledge traces by augmenting the diffusion trajectory with controlled Gaussian noise.</p>
 
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/style2.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Erasing 5 artists at a time. On left, we show the original vs edited for the intended erasure. On the right, we show the interference with unerased artists. We find that our method efficiently erases while having the least inteference.
-    </figcaption>
-  </figure>
-
-  <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/style3.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Erasing 10 artists at a time. On left, we show the original vs edited for the intended erasure. On the right, we show the interference with unerased artists. We find that our method efficiently erases while having the least inteference.
-    </figcaption>
-  </figure>
-
-  <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/style4.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Erasing 50 artists at a time. On left, we show the original vs edited for the intended erasure. On the right, we show the interference with unerased artists. We find that our method efficiently erases while having the least inteference.
-    </figcaption>
-  </figure>
-<h2> Debiasing a profession across gender and race</h2>
-  <p> Previous debiasing methods address only dual attributed biases, however, attributes like race are multi-faceted. We propose a multi-faceted debiasing formulation that can be scaled for multiple concepts. Our method has strong debiasing results, improving the race and gender representation in diffusion models.
-  <center><img src="images/paper/debias_equation.png" style="width:500px;padding-bottom:10px;"></center>
-    <p>This formulation allows UCE to address multi-attribute biases like race. We show some quantitative results of our method displaying improved race and gender diversity.</p>
-    <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/gender1.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Our method improves gender representation for professions in diffusion models.
+    <center><img src="images/Figures/noisingprobe-1.png" style="width:100%; max-width:800px"></center>
+    <figcaption>Our Noise-Based probing technique adds additional noise to each denoising step, allowing the model to explore alternative generation pathways. Remarkably, this simple method can reveal traces of knowledge even when optimization-based methods fail.
     </figcaption>
   </figure>
   
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/gender2.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Our method improves gender representation for professions in diffusion models.
+    <center><img src="images/Figures/summary figure-1.png" style="width:100%; max-width:800px"></center>
+    <figcaption>Overview of erasing model behavior under different probing techniques. Our Noise-Based probe can recover the target concept ("church") even when Textual Inversion and UnlearnDiffAtk fail, particularly for UCE, ESD-x, and ESD-u methods.
+    </figcaption>
+  </figure>
+
+
+<h3> 3. Classifier-Guided Latent Probing </h3>
+  <p>To probe whether erased models still encode latent traces of the target concept, we apply classifier guidance in latent space. We train a lightweight, timestep-aware classifier directly in the latent space and use its gradient to steer the diffusion trajectory toward regions associated with the erased concept.</p>
+  
+  <p>At each denoising step t, we compute the gradient of the binary cross-entropy loss with respect to the latent:</p>
+  
+  <figure class="center_image" style="margin-top: 20px">
+    <center><img src="images/Figures/classifier_guidance_eq1.png" style="width:100%; max-width:400px"></center>
+  </figure>
+  
+  <p>We then use this gradient to update the latent at each timestep:</p>
+  
+  <figure class="center_image" style="margin-top: 20px">
+    <center><img src="images/Figures/classifier_guidance_eq2.png" style="width:100%; max-width:400px"></center>
+  </figure>
+  
+  <p>where s<sub>clf</sub> is the guidance strength and σ<sub>t</sub> controls the effective step size according to the current noise level.</p>
+  
+  <figure class="center_image" style="margin-top: 30px">
+    <center><img src="images/Figures/classifier_guidance-1.png" style="width:100%; max-width:800px"></center>
+    <figcaption>Classifier Guidance with Noise-Based probes significantly improves the visual fidelity and semantic accuracy of recovered concepts. Even STEREO, which resists other probing methods, can regenerate erased concepts when steered by latent classifiers.
+    </figcaption>
+  </figure>
+
+<h3> 4. Dynamic Concept Tracing </h3>
+  <p>We analyze how concept representations evolve during the erasure process by examining the trajectories of alternative generations at different erasure strengths. We prompt the model at various stages using the concept name and inspect the resulting images to understand how different methods degrade concepts.</p>
+  
+  <figure class="center_image" style="margin-top: 30px">
+    <center><img src="images/Figures/concept_tracing.png" style="width:100%; max-width:800px"></center>
+    <figcaption><b>Dynamic concept tracing for Van Gogh style erasure.</b> When comparing generations as concepts are progressively erased, differences between method types become apparent. Methods aligning with destruction-based removal (like GA and Task Vector) degrade concept generation continuously, while guidance-based methods (like ESD-x and ESD-u) produce more abrupt transitions and diverse alternative outputs.
     </figcaption>
   </figure>
   
-  <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/gender3.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Our method improves gender representation for professions in diffusion models.
-    </figcaption>
-  </figure>
+  <p>We observe that methods which perform more robust erasure tend to degrade the concept more consistently. Gradient Ascent and Task Vector often converge to generate similar images along the trajectory, with quality degrading as erasure progresses. In contrast, methods that behave more like guidance-based avoidance exhibit more abrupt transitions between alternative generations, producing more varied outputs when prompted with the erased concept.</p>
 
-   
- <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/race1.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Our method improves race representation for professions in diffusion models.
-    </figcaption>
-  </figure>
-
-   
- <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/race2.png" style="width:100%; max-width:800px"></center>
-    <figcaption> Our method improves race representation for professions in diffusion models.
-    </figcaption>
-  </figure>
-
-<h2> Moderating an unsafe concept</h2>
-  <p>We test our method on moderating unsafe concepts like <i>"nudity"</i>. We compare our method with <a href="https://erasing.baulab.info">ESD-u and ESD-x</a>. We find that our method has similar performance as ESD-x when erasing a single concept, but our method shows minimal interference with other concepts in the model. 
-  We also see that moderating multiple unsafe concepts like <i>"harm, violence, child abuse, blood, nudity"</i>, our method shows a stronger moderation effect on the model as seen in the figure below.</p>
-  <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/paper/nudity_bar.png" style="width:100%; max-width:800px"></center>
-    <figcaption> We show the percentage reduction in unsafe nudity samples compared to Original SD as classified by <a href="https://github.com/notAI-tech/NudeNet">Nudenet</a>. We find that our method has a superior performance when moderating multiple unsafe concepts.
-    </figcaption>
-  </figure>
+<h2> Key Findings: Guidance vs Destruction </h2>
+  <p>Our comprehensive evaluation reveals distinct patterns across erasure methods. Across our probing techniques, we find that:</p>
   
+  <ul style="text-align: left; max-width: 800px; margin: auto;">
+    <li><b>Visual Context Probing:</b> TaskVectors, despite being robust to text attacks, can still inpaint erased concepts when given visual context</li>
+    <li><b>Noise-Based Probing:</b> Simply increasing stochasticity can recover concepts in UCE, ESD-x, and ESD-u, suggesting weak guidance away from concepts</li>
+    <li><b>Classifier Guidance:</b> Even STEREO, which resists other probes, can regenerate erased concepts when steered by latent classifiers</li>
+    <li><b>Dynamic Tracing:</b> Destruction-based methods show continuous degradation while guidance-based methods exhibit abrupt transitions</li>
+  </ul>
+  
+  <p>These findings indicate that <b>most current erasure methods operate through guidance-based avoidance rather than true destruction</b> of underlying representations. Methods that appear robust under traditional input search techniques remain vulnerable when assessed from other perspectives.</p>
+  
+  <table style="margin: 20px auto; max-width: 800px; border-collapse: collapse;">
+    <tr style="background-color: #f0f0f0;">
+      <th style="padding: 10px; border: 1px solid #ddd;">Method</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Text Attacks</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Visual Context</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Noise Probing</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">Classifier Guidance</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">GA</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">TaskVector</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Partially</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">STEREO</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✓ Robust</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">UCE/ESD</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">✗ Vulnerable</td>
+    </tr>
+  </table>
+  
+  <p style="text-align: center; font-style: italic; margin-top: 20px;">Our evaluation emphasizes the critical need for comprehensive assessments to reliably determine the completeness and true effectiveness of concept erasure methods.</p>
+
 <h2>How to cite</h2>
 
 <p>The paper can be cited as follows.
@@ -230,18 +253,18 @@ Key advantages versus finetuning approaches include: efficient scaling of editin
 <h3 class="card-header">bibliography</h3>
 <div class="card-block">
 <p style="text-indent: -3em; margin-left: 3em;" class="card-text clickselect">
-Rohit Gandikota, Hadas Orgad, Yonatan Belinkov, Joanna Materzy&#324;ska, David Bau. "<em>Unified Concept Editing in Diffusion Models.</em>" in Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2024.</nobr>
+Kevin Lu, Nicky Kriplani, Rohit Gandikota, Minh Pham, David Bau, Chinmay Hegde, Niv Cohen. "<em>When Are Concepts Erased From Diffusion Models?</em>"
+39th Conference on Neural Information Processing Systems (NeurIPS 2025).</nobr>
 </p>
 </div>
 <h3 class="card-header">bibtex</h3>
 <div class="card-block">
 <pre class="card-text clickselect">
-@inproceedings{gandikota2024unified,
-  title={Unified Concept Editing in Diffusion Models},
-  author={Gandikota, Rohit and Orgad, Hadas and Belinkov, Yonatan and Materzy{\'n}ska, Joanna and Bau, David},
-  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
-  year={2024},
-  note={arXiv:2308.14761}
+@inproceedings{lu2025concepts,
+  title={When Are Concepts Erased From Diffusion Models?},
+  author={Kevin Lu and Nicky Kriplani and Rohit Gandikota and Minh Pham and David Bau and Chinmay Hegde and Niv Cohen},
+  booktitle={39th Conference on Neural Information Processing Systems (NeurIPS)},
+  year={2025}
 }
 </pre>
 </div>
