@@ -10,13 +10,13 @@
 <meta property="og:description" content="Investigating whether concept erasure in diffusion models truly removes knowledge or merely avoids it, with a comprehensive suite of probing techniques." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://unerasing.baulab.info" />
-<meta property="og:image" content="https://unerasing.baulab.info/images/Figures/figure1-1.png" />
+<meta property="og:image" content="https://unerasing.baulab.info/images/Figures/figure1-1-min.png" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="When Are Concepts Erased From Diffusion Models?" />
 <meta name="twitter:description" content="Investigating whether concept erasure in diffusion models truly removes knowledge or merely avoids it, with a comprehensive suite of probing techniques." />
-<meta name="twitter:image" content="https://unerasing.baulab.info/images/Figures/figure1-1.png" />
+<meta name="twitter:image" content="https://unerasing.baulab.info/images/Figures/figure1-1-min.png" />
 
 <meta name="twitter:title" content="When Are Concepts Erased From Diffusion Models?" />
 <meta name="twitter:description" content="Investigating whether concept erasure in diffusion models truly removes knowledge or merely avoids it, with a comprehensive suite of probing techniques." />
@@ -125,7 +125,7 @@ To assess whether a concept has been truly erased from the model, we introduce <
 <div class="col">
   
 <figure class="center_image" style="margin-top: 30px">
-  <center><img src="images/Figures/figure1-1.png" style="width:100%; max-width:800px"></center>
+  <center><img src="images/Figures/figure1-1-min.png" style="width:100%; max-width:800px"></center>
   <figcaption>We propose two conceptual models for erasure: (1) <b>Guidance-Based Avoidance</b>, which avoids a concept by redirecting the model to different concept locations. (2) <b>Destruction-Based Removal</b>, which reduces the unconditional likelihood of the target concept while keeping guidance intact.
   </figcaption>
 </figure>
@@ -140,7 +140,7 @@ To assess whether a concept has been truly erased from the model, we introduce <
   <p>We provide the model with an image of the erased concept but mask out a central portion, testing whether the model can complete the missing region despite erasure.</p>
   
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/Figures/inpaint-1.png" style="width:100%; max-width:800px"></center>
+    <center><img src="images/Figures/inpaint-1-min.png" style="width:100%; max-width:800px"></center>
     <figcaption>Task Vector method, despite being robust to adversarial attacks, still inpaints recognizable images of erased concepts when given visual context.
     </figcaption>
   </figure>
@@ -149,7 +149,7 @@ To assess whether a concept has been truly erased from the model, we introduce <
   <p>We run the diffusion process with the original model for a few timesteps (t=5 or t=10 out of 50), then pass the intermediate noisy image to the erased model to complete the generation process.</p>
   
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/Figures/diffusion_completion.png" style="width:100%; max-width:800px"></center>
+    <center><img src="images/Figures/diffusion_completion-min.png" style="width:100%; max-width:800px"></center>
     <figcaption>RECE surprisingly reproduces knowledge about erased concepts when completing partially generated images from the original model.
     </figcaption>
   </figure>
@@ -157,13 +157,13 @@ To assess whether a concept has been truly erased from the model, we introduce <
   <p>We introduce a training-free method to probe for residual knowledge by directly manipulating the model's generation process. This technique searches for hidden knowledge traces by augmenting the diffusion trajectory with controlled Gaussian noise.</p>
 
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/Figures/noisingprobe-1.png" style="width:100%; max-width:800px"></center>
+    <center><img src="images/Figures/noisingprobe-1-min.png" style="width:100%; max-width:800px"></center>
     <figcaption>Our Noise-Based probing technique adds additional noise to each denoising step, allowing the model to explore alternative generation pathways. Remarkably, this simple method can reveal traces of knowledge even when optimization-based methods fail.
     </figcaption>
   </figure>
   
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/Figures/summary figure-1.png" style="width:100%; max-width:800px"></center>
+    <center><img src="images/Figures/summary figure-1-min.png" style="width:100%; max-width:800px"></center>
     <figcaption>Overview of erasing model behavior under different probing techniques. Our Noise-Based probe can recover the target concept ("church") even when Textual Inversion and UnlearnDiffAtk fail, particularly for UCE, ESD-x, and ESD-u methods.
     </figcaption>
   </figure>
@@ -180,7 +180,7 @@ This classifier provides a gradient signal that steers the diffusion trajectory 
 
 <figure class="center_image" style="margin-top: 20px">
   <center>
-    <img src="images/Figures/classifier_guidance_eq1.png" style="width:100%; max-width:380px">
+    <img src="images/Figures/classifier_guidance_eq1-min.png" style="width:100%; max-width:380px">
   </center>
   <figcaption><b>Eq. 3.</b> Gradient of the BCE loss with respect to the latent, providing a semantic direction that increases classifier confidence in the target concept.</figcaption>
 </figure>
@@ -189,14 +189,14 @@ This classifier provides a gradient signal that steers the diffusion trajectory 
 
 <figure class="center_image" style="margin-top: 20px">
   <center>
-    <img src="images/Figures/classifier_guidance_eq2.png" style="width:85%; max-width:310px">
+    <img src="images/Figures/classifier_guidance_eq2-min.png" style="width:85%; max-width:310px">
   </center>
   <figcaption><b>Eq. 4.</b> Classifier-guided latent update, where <i>s<sub>clf</sub></i> controls guidance strength and 
   <i>&sigma;<sub>t</sub></i> scales the step size by the current noise level (following Dhariwal & Nichol).</figcaption>
 </figure>
 
 <figure class="center_image" style="margin-top: 30px">
-  <center><img src="images/Figures/classifier_guidance-1.png" style="width:100%; max-width:800px"></center>
+  <center><img src="images/Figures/classifier_guidance-1-min.png" style="width:100%; max-width:800px"></center>
   <figcaption>
     <b>Classifier-guided probing results.</b> Latent classifier guidance enhances semantic recovery and visual fidelity, revealing hidden concept traces even in models previously robust to other probing methods.
   </figcaption>
@@ -206,7 +206,7 @@ This classifier provides a gradient signal that steers the diffusion trajectory 
   <p>We analyze how concept representations evolve during the erasure process by examining the trajectories of alternative generations at different erasure strengths. We prompt the model at various stages using the concept name and inspect the resulting images to understand how different methods degrade concepts.</p>
   
   <figure class="center_image" style="margin-top: 30px">
-    <center><img src="images/Figures/concept_tracing.png" style="width:100%; max-width:800px"></center>
+    <center><img src="images/Figures/concept_tracing-min.png" style="width:100%; max-width:800px"></center>
     <figcaption><b>Dynamic concept tracing for Van Gogh style erasure.</b> When comparing generations as concepts are progressively erased, differences between method types become apparent. Methods aligning with destruction-based removal (like GA and Task Vector) degrade concept generation continuously, while guidance-based methods (like ESD-x and ESD-u) produce more abrupt transitions and diverse alternative outputs.
     </figcaption>
   </figure>
