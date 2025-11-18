@@ -161,7 +161,10 @@ To assess whether a concept has been truly erased from the model, we introduce <
     <figcaption>Our Noise-Based probing technique adds additional noise to each denoising step, allowing the model to explore alternative generation pathways. Remarkably, this simple method can reveal traces of knowledge even when optimization-based methods fail.
     </figcaption>
   </figure>
-  
+      <figure class="center_image" style="margin-top: 30px">
+    <center><img src="images/Figures/noising_eq.png" style="width:100%; max-width:800px"></center>
+<figcaption> The stochastic term \( \sigma_t \epsilon_t \) behaves like a Brownian-motion component, injecting randomness into each denoising step whenever \( \sigma_t > 0 \). This observation motivates our approach: by explicitly controlling the magnitude of this stochastic component, we can explore a broader region of the model’s latent space. To achieve this, we modify the DDIM update by introducing an absolute-value scaling on the noise-injection term, allowing us to extend \(\eta\) beyond its usual range \([0, 1]\) and thus amplify (or suppress) the injected noise in a stable manner. </figcaption>
+  </figure>
   <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/Figures/summary figure-1-min.png" style="width:100%; max-width:800px"></center>
     <figcaption>Overview of erasing model behavior under different probing techniques. Our Noise-Based probe can recover the target concept ("church") even when Textual Inversion and UnlearnDiffAtk fail, particularly for UCE, ESD-x, and ESD-u methods.
