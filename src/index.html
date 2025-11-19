@@ -176,7 +176,7 @@ To assess whether a concept has been truly erased from the model, we introduce <
   </figure>
       <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/Figures/noising_eq.png" style="width:100%; max-width:800px"></center>
-<figcaption> The stochastic term \( \sigma_t \epsilon_t \) behaves like a Brownian-motion component, injecting randomness into each denoising step whenever \( \sigma_t > 0 \). This observation motivates our approach: by explicitly controlling the magnitude of this stochastic component, we can explore a broader region of the model’s latent space. To achieve this, we modify the DDIM update by introducing an absolute-value scaling on the noise-injection term, allowing us to extend \(\eta\) beyond its usual range \([0, 1]\) and thus amplify (or suppress) the injected noise in a stable manner. </figcaption>
+<figcaption> The stochastic term \( \sigma_t \epsilon_t \) behaves like a Brownian-motion component, injecting randomness into each denoising step whenever \( \sigma_t > 0 \). This observation motivates our approach: by explicitly controlling the magnitude of this stochastic component, we can explore a broader region of the model's latent space. To achieve this, we modify the DDIM update by introducing an absolute-value scaling on the noise-injection term, allowing us to extend \(\eta\) beyond its usual range \([0, 1]\) and thus amplify (or suppress) the injected noise in a stable manner. </figcaption>
   </figure>
   <figure class="center_image" style="margin-top: 30px">
     <center><img src="images/Figures/summary figure-1-min.png" style="width:100%; max-width:800px"></center>
